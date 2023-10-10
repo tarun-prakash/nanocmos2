@@ -1,0 +1,26 @@
+// minimal mcp program to test a single LArPix instance
+// configures minimum required to enable a single channel
+#1000
+$display("Running Correalated double sampling");
+
+#100 
+$display("Enabling Pixels");
+regfileOpUART(WRITE,PIXEL_DISABLE,0);
+
+#100 
+$display("Enabling CDS");
+regfileOpUART(WRITE,CDS,8'b00000001);
+
+#100
+$display("Read if pixels are enabled");
+regfileOpUART(READ,PIXEL_DISABLE,0);
+
+
+#100
+$display("Read if CDS is enabled");
+regfileOpUART(READ,CDS,0);
+
+#107 sample_en = 1;
+#3000 sample_en = 0;
+
+

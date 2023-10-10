@@ -1,0 +1,34 @@
+// minimal mcp program to test a single LArPix instance
+// configures minimum required to enable a single channel
+#1000
+$display("Running dafaulat sampling pixel");
+
+#100 
+$display("Enabling Pixels");
+regfileOpUART(WRITE,PIXEL_DISABLE,0);
+
+#100 
+//$display("Enabling single pixel");
+//regfileOpUART(WRITE,S_PIXEL_EN,8'b00000001);
+
+//#107 sample_en = 1;
+/*
+for (int i = 0; i < 6; i++) begin 
+	$display("Enabling ROW address");
+	regfileOpUART(WRITE,S_PIXEL_ROW,i); 
+	for (int j = 0; j < 15; j++) begin 
+		#3000 $display("Enabling COULMN address");
+		regfileOpUART(WRITE,S_PIXEL_COL,j); 
+		sample_en = 1;
+		#300 sample_en = 0;
+	end
+end
+*/
+
+#100
+$display("Read if pixels are enabled");
+regfileOpUART(READ,PIXEL_DISABLE,0);
+
+#107 sample_en = 1;
+#2000 sample_en = 0;
+

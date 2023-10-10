@@ -1,0 +1,10 @@
+// minimal mcp program to test a single LArPix instance
+// configures minimum required to enable a single channel
+#1000
+$display("Running Pixel disable");
+
+
+#1007 sample_en = 1;
+#3000 sample_en = 0;
+
+
